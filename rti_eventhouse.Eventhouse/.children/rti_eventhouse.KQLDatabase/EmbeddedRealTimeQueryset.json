@@ -1,0 +1,22 @@
+{
+  "queryset": {
+    "version": "1.0.0",
+    "dataSources": [
+      {
+        "id": "4d1bcbd6-b85b-4c21-a0bd-5241479afbcc",
+        "clusterUri": "https://trd-yjn3uh4zmm391mmgzn.z0.kusto.fabric.microsoft.com",
+        "type": "Fabric",
+        "databaseItemId": "0a8a9c47-52d7-41be-8f9b-956cc8d22570"
+      }
+    ],
+    "tabs": [
+      {
+        "id": "8abde571-b2df-4749-8eaf-cc6bb71eb69e",
+        "content": ".create table bikes_final (\n   BikepointID: string,\n   Street: string ,\n   Neighbourhood: string,\n   Latitude: decimal,\n   Longitude: decimal,\n   No_Bikes: int,\n   No_Empty_Docks: int,\n   MyTimestamp: datetime \n)\n;\n\n.alter table bikes_final policy update @'[{\"IsEnabled\": true, \"Source\": \"bikes\", \"Query\": \"bikes_transform()\", \"IsTransactional\": true}]'\n\n.create-or-alter function bikes_transform() {\n    bikes\n    | extend MyTimestamp = datetime_add('hour', 2, now())\n}\n\n.alter table bikes_final policy update @'[{\"IsEnabled\": true, \"Source\": \"bikes\", \"Query\": \"bikes_transform()\", \"IsTransactional\": true}]'",
+        "title": "Tab",
+        "dataSourceId": "4d1bcbd6-b85b-4c21-a0bd-5241479afbcc"
+      }
+    ],
+    "querysetType": "Embedded"
+  }
+}

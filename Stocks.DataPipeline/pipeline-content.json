@@ -1,0 +1,25 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "name": "stocks",
+        "type": "WebActivity",
+        "state": "Inactive",
+        "onInactiveMarkAs": "Succeeded",
+        "dependsOn": [],
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "typeProperties": {
+          "method": "GET",
+          "headers": {},
+          "relativeUrl": "https://esehdewcax9h9xob212l7fdm_eh/RealStockData/messages"
+        }
+      }
+    ]
+  }
+}

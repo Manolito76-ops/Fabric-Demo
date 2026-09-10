@@ -1,0 +1,11 @@
+{
+  "formatVersion": "202502",
+  "computeEngineSettings": {
+    "allowModernEvaluationEngine": true
+  },
+  "name": "supply_chain_landing2bronze",
+  "queryGroups": [],
+  "documentLocale": "de",
+  "queriesMetadata": {},
+  "connections": []
+}

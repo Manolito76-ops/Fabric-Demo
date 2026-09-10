@@ -1,0 +1,32 @@
+table dim_status
+	lineageTag: 72061266-8571-42d3-bed0-21e1c4d836fa
+	sourceLineageTag: [gold].[dim_status]
+
+	column Status_Key
+		dataType: int64
+		formatString: 0
+		lineageTag: a49c4711-4667-4747-ab31-afd83e497b13
+		sourceLineageTag: Status_Key
+		summarizeBy: none
+		sourceColumn: Status_Key
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+	column Machine_Status
+		dataType: string
+		lineageTag: 7030ea83-2b02-45e4-952b-7d3bcc2e32fe
+		sourceLineageTag: Machine_Status
+		summarizeBy: none
+		sourceColumn: Machine_Status
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_status = entity
+		mode: directLake
+		source
+			entityName: dim_status
+			schemaName: gold
+			expressionSource: 'DirectLake - lh_demo'
+

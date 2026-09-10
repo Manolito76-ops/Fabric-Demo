@@ -1,0 +1,153 @@
+table FactProduction
+	lineageTag: 2d476363-712d-44e3-957b-2498b9711c00
+	sourceLineageTag: [gold].[FactProduction]
+
+	column ProductionID
+		dataType: string
+		sourceProviderType: varchar(100)
+		lineageTag: ef3df6c7-d852-4df8-b834-f31e5bbde793
+		sourceLineageTag: ProductionID
+		summarizeBy: none
+		sourceColumn: ProductionID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductID
+		dataType: string
+		sourceProviderType: varchar(100)
+		lineageTag: 444a4c85-18b9-4861-a681-46849eb38f57
+		sourceLineageTag: ProductID
+		summarizeBy: none
+		sourceColumn: ProductID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Plant
+		dataType: string
+		sourceProviderType: varchar(100)
+		lineageTag: f0c30ae5-db20-4c16-9026-4a7a44c5aad0
+		sourceLineageTag: Plant
+		summarizeBy: none
+		sourceColumn: Plant
+
+		annotation SummarizationSetBy = Automatic
+
+	column Machine
+		dataType: string
+		sourceProviderType: varchar(100)
+		lineageTag: 10677533-7983-4e15-b979-c537d286754e
+		sourceLineageTag: Machine
+		summarizeBy: none
+		sourceColumn: Machine
+
+		annotation SummarizationSetBy = Automatic
+
+	column PlannedQuantity
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 4a276e37-d159-48da-b0fc-37199e7be67d
+		sourceLineageTag: PlannedQuantity
+		summarizeBy: sum
+		sourceColumn: PlannedQuantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProducedQuantity
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: b714a4a5-6732-4782-8c7b-70fd9776be75
+		sourceLineageTag: ProducedQuantity
+		summarizeBy: sum
+		sourceColumn: ProducedQuantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column DefectiveQuantity
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 03b6bfc0-e825-4790-8694-001a7dcf06c2
+		sourceLineageTag: DefectiveQuantity
+		summarizeBy: sum
+		sourceColumn: DefectiveQuantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column DurationHours
+		dataType: decimal
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		sourceProviderType: decimal(10, 2)
+		lineageTag: 3c694fe6-1fc7-4039-9959-f44b5607e764
+		sourceLineageTag: DurationHours
+		summarizeBy: sum
+		sourceColumn: DurationHours
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column ProductionDate
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
+		lineageTag: 6ecb9ce1-bb4a-43b6-95b7-d0e262d43088
+		sourceLineageTag: ProductionDate
+		summarizeBy: none
+		sourceColumn: ProductionDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductionDateKey
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 4d48f10f-bad2-42f7-9f53-9ba690f37921
+		sourceLineageTag: ProductionDateKey
+		summarizeBy: none
+		sourceColumn: ProductionDateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column SourceFileName
+		dataType: string
+		sourceProviderType: varchar(255)
+		lineageTag: 86785fcc-4a04-4a52-b41a-5a34046c54db
+		sourceLineageTag: SourceFileName
+		summarizeBy: none
+		sourceColumn: SourceFileName
+
+		annotation SummarizationSetBy = Automatic
+
+	column IngestionDateTime
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: 360fe0be-0b77-4395-8b3e-50be57374de1
+		sourceLineageTag: IngestionDateTime
+		summarizeBy: none
+		sourceColumn: IngestionDateTime
+
+		annotation SummarizationSetBy = Automatic
+
+	column LoadedToGoldDateTime
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: f20b5d24-6571-483d-867b-c6c6e4ec39d7
+		sourceLineageTag: LoadedToGoldDateTime
+		summarizeBy: none
+		sourceColumn: LoadedToGoldDateTime
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactProduction = entity
+		mode: directLake
+		source
+			entityName: FactProduction
+			schemaName: gold
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

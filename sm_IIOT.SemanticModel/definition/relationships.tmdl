@@ -1,0 +1,16 @@
+relationship 76e3ff77-85a3-ea0c-75e3-d515649b00cb
+	fromColumn: fact_iiot_hourly.Date_Key
+	toColumn: dim_date.Date_Key
+
+relationship 521fd6ec-379f-ba77-a707-b8cf0ab56e0e
+	fromColumn: fact_iiot_hourly.Hour_Key
+	toColumn: dim_hour.Hour_Key
+
+relationship 982e27c5-fc19-4333-a6f5-628d39d9d146
+	fromColumn: fact_iiot_hourly.Machine_Key
+	toColumn: dim_machine.Machine_Key
+
+relationship fad8747d-3da7-a624-329c-1e31f0e35cfa
+	fromColumn: fact_iiot_hourly.Status_Key
+	toColumn: dim_status.Status_Key
+

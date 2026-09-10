@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Rep_IIOT"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "ee61f950-0b19-b839-4253-7effff064504"
+  }
+}

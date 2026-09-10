@@ -1,0 +1,88 @@
+table FactBOM
+	lineageTag: e993c28f-2775-46bf-9b16-2336daaf2e1a
+	sourceLineageTag: [gold].[FactBOM]
+
+	column ProductID
+		dataType: string
+		sourceProviderType: varchar(100)
+		lineageTag: 56e993cb-a5f0-466c-8a91-763c56f3b311
+		sourceLineageTag: ProductID
+		summarizeBy: none
+		sourceColumn: ProductID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PartID
+		dataType: string
+		sourceProviderType: varchar(100)
+		lineageTag: 97d1d27f-5b87-4918-8fed-93bcc98ada27
+		sourceLineageTag: PartID
+		summarizeBy: none
+		sourceColumn: PartID
+
+		annotation SummarizationSetBy = Automatic
+
+	column QuantityPerProduct
+		dataType: decimal
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		sourceProviderType: decimal(18, 4)
+		lineageTag: cded9caf-b27c-4e9b-9479-93723f7d1b5a
+		sourceLineageTag: QuantityPerProduct
+		summarizeBy: sum
+		sourceColumn: QuantityPerProduct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column Unit
+		dataType: string
+		sourceProviderType: varchar(50)
+		lineageTag: aee8ec83-f7cd-4470-8829-83de29d14c66
+		sourceLineageTag: Unit
+		summarizeBy: none
+		sourceColumn: Unit
+
+		annotation SummarizationSetBy = Automatic
+
+	column SourceFileName
+		dataType: string
+		sourceProviderType: varchar(255)
+		lineageTag: ac6dfeb4-63fa-4408-ab3d-03692aafcac3
+		sourceLineageTag: SourceFileName
+		summarizeBy: none
+		sourceColumn: SourceFileName
+
+		annotation SummarizationSetBy = Automatic
+
+	column IngestionDateTime
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: f1980a54-7970-4320-8218-d3e227005df8
+		sourceLineageTag: IngestionDateTime
+		summarizeBy: none
+		sourceColumn: IngestionDateTime
+
+		annotation SummarizationSetBy = Automatic
+
+	column LoadedToGoldDateTime
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: ba72e7be-7386-4bfd-9237-30c7d6dfe493
+		sourceLineageTag: LoadedToGoldDateTime
+		summarizeBy: none
+		sourceColumn: LoadedToGoldDateTime
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactBOM = entity
+		mode: directLake
+		source
+			entityName: FactBOM
+			schemaName: gold
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

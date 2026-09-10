@@ -1,0 +1,48 @@
+{
+  "formatVersion": "202502",
+  "computeEngineSettings": {
+    "allowModernEvaluationEngine": true
+  },
+  "name": "csv",
+  "queryGroups": [],
+  "documentLocale": "de-DE",
+  "queriesMetadata": {
+    "bom csv": {
+      "queryId": "015f8392-3afb-4591-ab85-7a6f99378d25",
+      "queryName": "bom csv",
+      "loadEnabled": false
+    },
+    "order csv": {
+      "queryId": "ebdc355f-09df-45b8-9f6b-479c857f28b3",
+      "queryName": "order csv",
+      "loadEnabled": false
+    },
+    "production csv": {
+      "queryId": "d1cd699f-7b01-4334-a467-714c8af2b0f1",
+      "queryName": "production csv"
+    },
+    "supply_chain csv": {
+      "queryId": "8256596d-c1b8-4e8f-9ced-0f97ae917ce4",
+      "queryName": "supply_chain csv",
+      "loadEnabled": false
+    },
+    "production csv_DataDestination": {
+      "queryId": "c8c81c98-7086-4110-8ac2-55db4cba4515",
+      "queryName": "production csv_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    }
+  },
+  "connections": [
+    {
+      "path": "Lakehouse",
+      "kind": "Lakehouse",
+      "connectionId": "{\"ClusterId\":\"ce0925ac-0ac1-4a8c-a0bf-690fac0094ce\",\"DatasourceId\":\"fbad8e00-bfd1-415a-a352-1c63e9ad5ef4\"}"
+    },
+    {
+      "path": "Warehouse",
+      "kind": "Warehouse",
+      "connectionId": "{\"ClusterId\":\"ce0925ac-0ac1-4a8c-a0bf-690fac0094ce\",\"DatasourceId\":\"4fb51c59-b66c-4dc9-98ea-760e70ddc971\"}"
+    }
+  ]
+}

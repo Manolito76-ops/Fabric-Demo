@@ -1,0 +1,100 @@
+table fact_iiot_hourly
+	lineageTag: 573e3c77-dd2f-4657-b861-fa98cd8f4af7
+	sourceLineageTag: [gold].[fact_iiot_hourly]
+
+	column Date_Key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 2e2e137e-80cb-4158-9a4e-7671d0bdf27f
+		sourceLineageTag: Date_Key
+		summarizeBy: none
+		sourceColumn: Date_Key
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Hour_Key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: aaa3130e-d6ad-4a83-b9b7-c35461c35f3a
+		sourceLineageTag: Hour_Key
+		summarizeBy: none
+		sourceColumn: Hour_Key
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Machine_Key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: d778d507-b9ab-4cb6-ae5c-8fa4c83fc9fd
+		sourceLineageTag: Machine_Key
+		summarizeBy: none
+		sourceColumn: Machine_Key
+
+		changedProperty = SummarizeBy
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column Status_Key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 50a95644-8183-4103-b4d8-66b0778ca5c7
+		sourceLineageTag: Status_Key
+		summarizeBy: none
+		sourceColumn: Status_Key
+
+		changedProperty = SummarizeBy
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column Avg_Temperatur_Celsius
+		dataType: double
+		lineageTag: 10a3981f-fb36-4431-80d9-9f237d253a74
+		sourceLineageTag: Avg_Temperatur_Celsius
+		summarizeBy: average
+		sourceColumn: Avg_Temperatur_Celsius
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Total_Gutmenge
+		dataType: int64
+		formatString: 0
+		lineageTag: a9f28f07-00a7-4aac-bb56-e2e6fe02b01d
+		sourceLineageTag: Total_Gutmenge
+		summarizeBy: sum
+		sourceColumn: Total_Gutmenge
+
+		annotation SummarizationSetBy = Automatic
+
+	column Total_Ausschussmenge
+		dataType: int64
+		formatString: 0
+		lineageTag: 4966a207-dd56-4a11-8f42-6b0a1fd46b35
+		sourceLineageTag: Total_Ausschussmenge
+		summarizeBy: sum
+		sourceColumn: Total_Ausschussmenge
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_iiot_hourly = entity
+		mode: directLake
+		source
+			entityName: fact_iiot_hourly
+			schemaName: gold
+			expressionSource: 'DirectLake - lh_demo'
+

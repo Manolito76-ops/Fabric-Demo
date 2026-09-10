@@ -1,0 +1,34 @@
+table DimSupplier
+	lineageTag: 935c81e8-ea54-4b52-a981-a7348effaa7a
+	sourceLineageTag: [gold].[DimSupplier]
+
+	column SupplierName
+		dataType: string
+		sourceProviderType: varchar(255)
+		lineageTag: 2273360c-44a4-4617-81bd-164ff68e2cd5
+		sourceLineageTag: SupplierName
+		summarizeBy: none
+		sourceColumn: SupplierName
+
+		annotation SummarizationSetBy = Automatic
+
+	column CreatedInGoldDateTime
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: 4dd65320-5127-43e9-b7ed-1bf0f8f00efb
+		sourceLineageTag: CreatedInGoldDateTime
+		summarizeBy: none
+		sourceColumn: CreatedInGoldDateTime
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimSupplier = entity
+		mode: directLake
+		source
+			entityName: DimSupplier
+			schemaName: gold
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

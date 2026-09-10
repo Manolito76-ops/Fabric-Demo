@@ -1,0 +1,39 @@
+table dim_hour
+	lineageTag: 87e0f714-a664-463c-be9e-612c00f3f925
+	sourceLineageTag: [gold].[dim_hour]
+
+	column Hour_Key
+		dataType: int64
+		formatString: 0
+		lineageTag: e7499cbf-b9b7-4015-b484-a150f0066c0f
+		sourceLineageTag: Hour_Key
+		summarizeBy: none
+		sourceColumn: Hour_Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column Stunde_Name
+		dataType: string
+		lineageTag: 5fac6b78-7581-4416-a6b4-e2627f52f1f4
+		sourceLineageTag: Stunde_Name
+		summarizeBy: none
+		sourceColumn: Stunde_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Schicht
+		dataType: string
+		lineageTag: c02d5581-34cc-4f42-86d8-cb581332c542
+		sourceLineageTag: Schicht
+		summarizeBy: none
+		sourceColumn: Schicht
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_hour = entity
+		mode: directLake
+		source
+			entityName: dim_hour
+			schemaName: gold
+			expressionSource: 'DirectLake - lh_demo'
+
