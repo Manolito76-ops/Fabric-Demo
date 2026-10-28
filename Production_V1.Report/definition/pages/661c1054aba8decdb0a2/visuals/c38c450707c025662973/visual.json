@@ -1,0 +1,244 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "c38c450707c025662973",
+  "position": {
+    "x": 12.752077529157255,
+    "y": 140.27285282072978,
+    "z": 0,
+    "height": 632.6992312543407,
+    "width": 918.14958209932229,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimDate"
+                    }
+                  },
+                  "Property": "Year"
+                }
+              },
+              "queryRef": "DimDate.Year",
+              "nativeQueryRef": "Year"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimDate"
+                    }
+                  },
+                  "Property": "Month"
+                }
+              },
+              "queryRef": "DimDate.Month",
+              "nativeQueryRef": "Month"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dim_SalesPricing"
+                    }
+                  },
+                  "Property": "ProductName"
+                }
+              },
+              "queryRef": "Dim_SalesPricing.ProductName",
+              "nativeQueryRef": "ProductName"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactProduction"
+                    }
+                  },
+                  "Property": "Total Planed Quantity"
+                }
+              },
+              "queryRef": "FactProduction.Total Planed Quantity",
+              "nativeQueryRef": "Total Planed Quantity"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactProduction"
+                    }
+                  },
+                  "Property": "Total Produced Quantity"
+                }
+              },
+              "queryRef": "FactProduction.Total Produced Quantity",
+              "nativeQueryRef": "Total Produced Quantity"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dim_SalesPricing"
+                    }
+                  },
+                  "Property": "StandardSalesPrice"
+                }
+              },
+              "queryRef": "Dim_SalesPricing.StandardSalesPrice",
+              "nativeQueryRef": "StandardSalesPrice"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "72.06796767805719D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Dim_SalesPricing.StandardSalesPrice"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "8b9f2b6c5ac60612c8bd",
+        "ordinal": 0,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimDate"
+              }
+            },
+            "Property": "Year"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "394873352c6a0c335ac0",
+        "ordinal": 1,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimDate"
+              }
+            },
+            "Property": "Month"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "1b2b3f5719b61593c985",
+        "ordinal": 2,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FactProduction"
+              }
+            },
+            "Property": "Total Defective Quantity"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "afc63ed29780a2489ac9",
+        "ordinal": 3,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FactProduction"
+              }
+            },
+            "Property": "Total Duration Hours"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "2a31155ca020c099e0b6",
+        "ordinal": 4,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FactProduction"
+              }
+            },
+            "Property": "Total Planed Quantity"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "d1859b48cad0c3006809",
+        "ordinal": 5,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FactProduction"
+              }
+            },
+            "Property": "Total Produced Quantity"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "c67ee2c7431469009adc",
+        "ordinal": 6,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FactProduction"
+              }
+            },
+            "Property": "Total Production Runs"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      }
+    ],
+    "filterSortOrder": "Custom"
+  }
+}
