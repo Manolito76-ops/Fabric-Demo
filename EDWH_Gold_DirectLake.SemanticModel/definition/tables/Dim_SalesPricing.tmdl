@@ -1,0 +1,112 @@
+table Dim_SalesPricing
+	lineageTag: 991bda6d-1c87-4901-9e5b-cf20a8e3f582
+	sourceLineageTag: [stg].[Dim_SalesPricing]
+
+	column ParentProductID
+		dataType: string
+		lineageTag: e666023e-2b09-4cd7-9a90-199abfceddcd
+		sourceLineageTag: ParentProductID
+		summarizeBy: none
+		sourceColumn: ParentProductID
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductName
+		dataType: string
+		lineageTag: d5c4a5da-231b-4d5e-b82a-016e6f6dde81
+		sourceLineageTag: ProductName
+		summarizeBy: none
+		sourceColumn: ProductName
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column StandardSalesPrice
+		dataType: string
+		lineageTag: e24db03d-e3df-4f7d-9414-d1d40b73d8f1
+		sourceLineageTag: StandardSalesPrice
+		summarizeBy: none
+		sourceColumn: StandardSalesPrice
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Currency
+		dataType: string
+		lineageTag: e0d2d11d-0642-4a43-bd8c-2ea5faf3e1cf
+		sourceLineageTag: Currency
+		summarizeBy: none
+		sourceColumn: Currency
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column ValidFrom
+		dataType: string
+		lineageTag: d712e457-e5bb-473f-900b-0b9f5e9f314d
+		sourceLineageTag: ValidFrom
+		summarizeBy: none
+		sourceColumn: ValidFrom
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column ValidTo
+		dataType: string
+		lineageTag: 6e270985-087c-4dcc-92b2-895c9b98e2b2
+		sourceLineageTag: ValidTo
+		summarizeBy: none
+		sourceColumn: ValidTo
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column ScenarioVersion
+		dataType: string
+		lineageTag: fecc0dcd-d86f-4c23-87a7-deb064a5bd21
+		sourceLineageTag: ScenarioVersion
+		summarizeBy: none
+		sourceColumn: ScenarioVersion
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Category =
+			
+			VAR _Name = Dim_SalesPricing[ProductName]
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    CONTAINSSTRING(_Name, "E-"), "E-Bikes",
+			    CONTAINSSTRING(_Name, "Pedelec"), "E-Bikes",
+			    CONTAINSSTRING(_Name, "Gravel"), "Gravelbikes",
+			    CONTAINSSTRING(_Name, "Mountainbike") || CONTAINSSTRING(_Name, "MTB"), "Mountainbikes",
+			    CONTAINSSTRING(_Name, "Rennrad"), "Rennräder",
+			    CONTAINSSTRING(_Name, "Kinderrad") || CONTAINSSTRING(_Name, "Jugendrad"), "Kinderräder",
+			    "Trekking & City"
+			)
+		lineageTag: 9df7c0b9-c058-422f-b2f6-dd0b7d8f1aaf
+		summarizeBy: none
+		expressionContext: userContext
+
+		changedProperty = Name
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_SalesPricing = entity
+		mode: directLake
+		source
+			entityName: Dim_SalesPricing
+			schemaName: stg
+			expressionSource: 'DirectLake - wh_demo'
+

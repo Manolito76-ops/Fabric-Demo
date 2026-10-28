@@ -1,0 +1,61 @@
+[
+  {
+    "uniqueIdentifier": "e28649d6-049b-4f18-8f9f-f0b165b1a921",
+    "payload": {
+      "name": "job_events_eventstream_pl_csv2stg",
+      "description": "Container Description",
+      "type": "eventstreams"
+    },
+    "type": "container-v1"
+  },
+  {
+    "uniqueIdentifier": "b636579a-6cee-5d92-9e15-fe93efb74bee",
+    "payload": {
+      "name": "job_events_eventstream_pl_csv2stg-stream Ereignis",
+      "metadata": {
+        "eventstreamArtifactId": "a24ec5fe-914c-4801-a95f-e22d1c5ccb0f",
+        "eventTypes": [
+          {
+            "name": "job_events_eventstream_pl_csv2stg"
+          }
+        ]
+      },
+      "parentContainer": {
+        "targetUniqueIdentifier": "e28649d6-049b-4f18-8f9f-f0b165b1a921"
+      }
+    },
+    "type": "eventstreamSource-v1"
+  },
+  {
+    "uniqueIdentifier": "4275764e-62a2-406d-80e0-d6b69dc99c7a",
+    "payload": {
+      "name": "job_events_eventstream_pl_csv2stg-stream Ereignis",
+      "parentContainer": {
+        "targetUniqueIdentifier": "e28649d6-049b-4f18-8f9f-f0b165b1a921"
+      },
+      "definition": {
+        "type": "Event",
+        "instance": "{\"steps\":[{\"id\":\"2bd275ae-2ae1-4327-8c57-b882b9e7a9da\",\"name\":\"SourceEventStep\",\"rows\":[{\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"b636579a-6cee-5d92-9e15-fe93efb74bee\"}],\"kind\":\"SourceReference\",\"name\":\"SourceSelector\"}]}],\"templateId\":\"SourceEvent\",\"templateVersion\":\"1.3.0\"}"
+      }
+    },
+    "type": "timeSeriesView-v1"
+  },
+  {
+    "uniqueIdentifier": "4f694ef6-bb52-4fdd-9b2f-ce669dd9e456",
+    "payload": {
+      "name": "CSV-Ladefehler",
+      "parentContainer": {
+        "targetUniqueIdentifier": "e28649d6-049b-4f18-8f9f-f0b165b1a921"
+      },
+      "definition": {
+        "type": "Rule",
+        "instance": "{\"templateId\":\"EventTrigger\",\"templateVersion\":\"1.3.0\",\"steps\":[{\"name\":\"FieldsDefaultsStep\",\"id\":\"663af53f-b6fb-490f-af2f-ef40bcab1bb0\",\"rows\":[{\"name\":\"EventSelector\",\"kind\":\"Event\",\"arguments\":[{\"kind\":\"EventReference\",\"type\":\"complex\",\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"4275764e-62a2-406d-80e0-d6b69dc99c7a\"}],\"name\":\"event\"}]}]},{\"name\":\"EventDetectStep\",\"id\":\"657f263a-44e2-4470-8635-e2522fd9563c\",\"rows\":[{\"name\":\"OnEveryValue\",\"kind\":\"OnEveryValue\",\"arguments\":[]}]},{\"name\":\"ActStep\",\"id\":\"59a22a2c-998b-4427-a169-3df13f18eea8\",\"rows\":[{\"name\":\"TeamsBinding\",\"kind\":\"TeamsMessage\",\"arguments\":[{\"name\":\"messageLocale\",\"type\":\"string\",\"value\":\"en-us\"},{\"name\":\"recipients\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"AndreasFonth@AdventureShare.onmicrosoft.com\"}]},{\"name\":\"headline\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"Activator-Warnung\"}]},{\"name\":\"optionalMessage\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"Die Bedingung wurde erfüllt.\"}]},{\"name\":\"additionalInformation\",\"type\":\"array\",\"values\":[]}]}]}]}",
+        "settings": {
+          "shouldRun": true,
+          "shouldApplyRuleOnUpdate": false
+        }
+      }
+    },
+    "type": "timeSeriesView-v1"
+  }
+]

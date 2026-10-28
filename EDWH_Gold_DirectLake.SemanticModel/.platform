@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "EDWH_Gold_DirectLake"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "515b9654-176a-b27c-4515-72816bf57c5f"
+  }
+}

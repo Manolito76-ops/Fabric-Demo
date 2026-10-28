@@ -1,0 +1,217 @@
+table FactProduction
+	lineageTag: 16d99404-bc1b-4035-8fde-d4c8ff5b8bc2
+	sourceLineageTag: [gold].[FactProduction]
+
+	measure 'Total Produced Quantity' = SUM(FactProduction[TotalProducedQuantity])
+		formatString: #,0
+		lineageTag: d6adda1e-84bb-4737-aece-12b33f442cb4
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		changedProperty = IsHidden
+
+	measure 'Total Planed Quantity' = SUM(FactProduction[TotalPlannedQuantity])
+		formatString: #,0
+		lineageTag: f474c10a-4b4d-495f-bf21-d0acc5c1c2d0
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		changedProperty = IsHidden
+
+	measure 'Total Defective Quantity' = sum(FactProduction[TotalDefectiveQuantity])
+		formatString: #,0
+		lineageTag: 269c63c6-b907-4f36-beae-6905ae5dc2d1
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		changedProperty = IsHidden
+
+	measure 'Total Duration Hours' = ```
+			sum(FactProduction[TotalDurationHours]) 
+			```
+		formatString: #,0
+		lineageTag: 9d77710f-ea2d-4110-ab94-8501c32c1b5a
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		changedProperty = IsHidden
+
+	measure 'Total Production Runs' = sum(FactProduction[TotalProductionRuns])
+		formatString: #,0
+		lineageTag: bea3bd8c-8adf-42f7-9964-0e530348e303
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		changedProperty = IsHidden
+
+	column ProductID
+		dataType: string
+		lineageTag: c1eca94f-11aa-497e-a3ab-72d1a5523ce1
+		sourceLineageTag: ProductID
+		summarizeBy: none
+		sourceColumn: ProductID
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Plant
+		dataType: string
+		lineageTag: ed913839-02bf-4afe-957e-4b28324dc9d2
+		sourceLineageTag: Plant
+		summarizeBy: none
+		sourceColumn: Plant
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Machine
+		dataType: string
+		lineageTag: 8b8fa39f-2c49-4485-b381-82d45fce470d
+		sourceLineageTag: Machine
+		summarizeBy: none
+		sourceColumn: Machine
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductionDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: f228d718-15fe-4d36-8f32-3f2d05713814
+		sourceLineageTag: ProductionDate
+		summarizeBy: none
+		sourceColumn: ProductionDate
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductionDateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: d1e9dbf6-4932-41e2-9407-f3485fb40deb
+		sourceLineageTag: ProductionDateKey
+		summarizeBy: none
+		sourceColumn: ProductionDateKey
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column SourceFileName
+		dataType: string
+		lineageTag: 2e95e382-ec82-4d88-90a7-c9ade04c6ed4
+		sourceLineageTag: SourceFileName
+		summarizeBy: none
+		sourceColumn: SourceFileName
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column IngestionDateTime
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: cc799605-35e6-4602-b552-791b500c078a
+		sourceLineageTag: IngestionDateTime
+		summarizeBy: none
+		sourceColumn: IngestionDateTime
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column LoadedToGoldDateTime
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 30cfbbfd-9daa-44f7-9616-ffb8e11f46ba
+		sourceLineageTag: LoadedToGoldDateTime
+		summarizeBy: none
+		sourceColumn: LoadedToGoldDateTime
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column TotalProductionRuns
+		dataType: int64
+		formatString: 0
+		lineageTag: 3b432d8d-26e9-4edd-a484-f9354819fe6e
+		sourceLineageTag: TotalProductionRuns
+		summarizeBy: sum
+		sourceColumn: TotalProductionRuns
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column TotalPlannedQuantity
+		dataType: int64
+		formatString: 0
+		lineageTag: bf659d05-3a0b-41b2-892e-894bd458dd8e
+		sourceLineageTag: TotalPlannedQuantity
+		summarizeBy: sum
+		sourceColumn: TotalPlannedQuantity
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column TotalProducedQuantity
+		dataType: int64
+		formatString: 0
+		lineageTag: 54090e85-cf8a-4646-bb09-5abf4981c92b
+		sourceLineageTag: TotalProducedQuantity
+		summarizeBy: sum
+		sourceColumn: TotalProducedQuantity
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column TotalDefectiveQuantity
+		dataType: int64
+		formatString: 0
+		lineageTag: 9f2aa156-bc35-4a04-b5cd-70b99d36046f
+		sourceLineageTag: TotalDefectiveQuantity
+		summarizeBy: sum
+		sourceColumn: TotalDefectiveQuantity
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column TotalDurationHours
+		dataType: decimal
+		formatString: #,0.###############\ "€";-#,0.###############\ "€";#,0.###############\ "€"
+		lineageTag: c005d037-eac1-407f-9476-cbae96d0728b
+		sourceLineageTag: TotalDurationHours
+		summarizeBy: sum
+		sourceColumn: TotalDurationHours
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"de"}
+
+	partition FactProduction = entity
+		mode: directLake
+		source
+			entityName: FactProduction
+			schemaName: gold
+			expressionSource: 'DirectLake - wh_demo'
+

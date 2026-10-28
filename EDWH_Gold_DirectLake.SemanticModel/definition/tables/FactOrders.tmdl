@@ -1,0 +1,278 @@
+table FactOrders
+	lineageTag: d79b1e8d-fe80-453b-bd37-75fdc222c871
+	sourceLineageTag: [gold].[FactOrders]
+
+	measure Sales =
+			
+			SUMX(
+			    FactOrders,
+			    FactOrders[TotalQuantity] * RELATED(Dim_SalesPricing[StandardSalesPrice])
+			)
+		formatString: #,0
+		lineageTag: 03ec25f7-0981-462e-987f-3dbb29393bf2
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		changedProperty = IsHidden
+
+	measure 'Units SPLY' =
+			
+			CALCULATE(
+			    SUM(FactOrders[TotalQuantity]),
+			    SAMEPERIODLASTYEAR('DimDate'[FullDate])
+			)
+		formatString: 0
+		lineageTag: f55cb8f8-3dd5-45eb-a0da-c10c66286416
+
+		changedProperty = Name
+
+		changedProperty = IsHidden
+
+	measure 'Sales SPLY' =
+			
+			CALCULATE(
+			    [Sales],
+			    SAMEPERIODLASTYEAR('DimDate'[FullDate])
+			)
+		formatString: #,0
+		lineageTag: ab94533d-13a0-4ee3-b914-36c59827f95f
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		changedProperty = IsHidden
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Sales Diff %' =
+			
+			DIVIDE([Sales Diff], [Sales SPLY], 0)
+		formatString: 0.0\ %;-0.0\ %;0.0\ %
+		lineageTag: 7845516a-fe9c-4062-96f0-fcf87d813008
+
+		changedProperty = Name
+
+		changedProperty = IsHidden
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	measure 'Units YTD' =
+			
+			CALCULATE(
+			    SUM([TotalQuantity]),
+			    DATESYTD(DimDate[FullDate])
+			)
+		formatString: 0
+		lineageTag: 38c6f2b8-b4a0-42de-ac55-3b67819cbe76
+
+		changedProperty = Name
+
+	measure 'Units T12M' =
+			
+			CALCULATE(
+			    SUM([TotalQuantity]),
+			    DATESINPERIOD(
+			        'DimDate'[FullDate],
+			        [Max Actual Date],
+			        -12,
+			        MONTH
+			    )
+			)
+		formatString: 0
+		lineageTag: 8be1d5ec-8ebb-459a-a65c-5d16d20cd489
+
+		changedProperty = Name
+
+	measure 'Units YTD SPLY' =
+			
+			CALCULATE(
+			    [Units YTD],
+			    SAMEPERIODLASTYEAR('DimDate'[FullDate])
+			)
+		formatString: 0
+		lineageTag: be402a54-f455-4f31-83c2-e2fdefbe866e
+
+		changedProperty = Name
+
+	measure 'Sales YTD' =
+			
+			VAR _MaxDate = [Max Actual Date]
+			RETURN
+			CALCULATE(
+			    [Sales],
+			    DATESYTD('DimDate'[FullDate]),
+			    'DimDate'[FullDate] <= _MaxDate
+			)
+		lineageTag: 801e3e46-1579-42fe-81fd-fcb2e9867d46
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Sales Diff' = [Sales] - [Sales SPLY]
+		lineageTag: 200b7aeb-a804-4763-8f29-9891cc9663b4
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Sales YTD SPLY' =
+			
+			VAR _MaxDate = [Max Actual Date]
+			VAR _YearStart = STARTOFYEAR('DimDate'[FullDate])
+			-- Definiert exakt den Teilzeitraum des aktuellen Jahres (z.B. 01.01.2026 - 30.06.2026)
+			VAR _YTDPeriod = DATESBETWEEN('DimDate'[FullDate], _YearStart, _MaxDate)
+			RETURN
+			CALCULATE(
+			    [Sales],
+			    SAMEPERIODLASTYEAR(_YTDPeriod)
+			)
+		lineageTag: 8776c1c0-5503-4099-be5e-cf49c9192ce9
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Sales Diff YTD %' =
+			
+			VAR _SalesYTD = [Sales YTD]
+			VAR _SalesSPLY = [Sales YTD SPLY]
+			VAR _Diff = _SalesYTD - _SalesSPLY
+			RETURN
+			    IF(
+			        ISBLANK(_SalesSPLY) || _SalesSPLY = 0,
+			        BLANK(),
+			        DIVIDE(_Diff, _SalesSPLY)
+			    )
+		formatString: 0.0\ %;-0.0\ %;0.0\ %
+		lineageTag: 81460451-7514-47b8-8654-edb27491b2cf
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	column CustomerID
+		dataType: string
+		lineageTag: 05eb54be-f13d-43cc-a485-67fa4e3d7f7a
+		sourceLineageTag: CustomerID
+		summarizeBy: none
+		sourceColumn: CustomerID
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductID
+		dataType: string
+		lineageTag: 83242535-fe62-410b-a90a-d3b67e84901d
+		sourceLineageTag: ProductID
+		summarizeBy: none
+		sourceColumn: ProductID
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: d3c7270d-e06c-4ec9-90d4-304b257563f2
+		sourceLineageTag: OrderDate
+		summarizeBy: none
+		sourceColumn: OrderDate
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderDateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: ae301e1a-e965-4a7a-a3a6-a21bc48b5a9e
+		sourceLineageTag: OrderDateKey
+		summarizeBy: none
+		sourceColumn: OrderDateKey
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column TotalOrderCount
+		dataType: int64
+		formatString: #,0
+		lineageTag: be8b8c66-3841-4dc4-bae4-5f1fcb69ae62
+		sourceLineageTag: TotalOrderCount
+		summarizeBy: sum
+		sourceColumn: TotalOrderCount
+
+		changedProperty = FormatString
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column TotalQuantity
+		dataType: int64
+		formatString: #,0
+		lineageTag: 9fe3a1b0-e5b0-4bcf-8127-e0afbe0ad7f9
+		sourceLineageTag: TotalQuantity
+		summarizeBy: sum
+		sourceColumn: TotalQuantity
+
+		changedProperty = FormatString
+
+		changedProperty = SummarizeBy
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column SourceFileName
+		dataType: string
+		lineageTag: 448738aa-6c5b-4a93-83e2-98cfa2f20f5f
+		sourceLineageTag: SourceFileName
+		summarizeBy: none
+		sourceColumn: SourceFileName
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column IngestionDateTime
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 517f1ee6-945f-4c4b-8919-9595bedc5e5a
+		sourceLineageTag: IngestionDateTime
+		summarizeBy: none
+		sourceColumn: IngestionDateTime
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column LoadedToGoldDateTime
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 76f95de7-5e17-4b2e-8aba-e7cc5682d426
+		sourceLineageTag: LoadedToGoldDateTime
+		summarizeBy: none
+		sourceColumn: LoadedToGoldDateTime
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactOrders = entity
+		mode: directLake
+		source
+			entityName: FactOrders
+			schemaName: gold
+			expressionSource: 'DirectLake - wh_demo'
+

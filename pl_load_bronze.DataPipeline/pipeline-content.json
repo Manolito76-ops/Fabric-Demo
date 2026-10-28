@@ -1,0 +1,107 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "Lookup",
+        "typeProperties": {
+          "source": {
+            "type": "DataWarehouseSource",
+            "sqlReaderQuery": "SELECT ID, \nSourceSchema, \nSourceTable, \nTargetSchema, \nTargetTable, \nLoadType, \nUpdateIngestionColumn \nFROM meta.PipelineControl \nWHERE IsActive = 1",
+            "partitionOption": "None",
+            "queryTimeout": "02:00:00"
+          },
+          "datasetSettings": {
+            "type": "DataWarehouseTable",
+            "schema": [],
+            "connectionSettings": {
+              "name": "wh_demo",
+              "properties": {
+                "type": "DataWarehouse",
+                "typeProperties": {
+                  "artifactId": "29c624c1-e5f7-84b8-44f4-5d33dcd09796",
+                  "endpoint": "cj236xyunrauxajdvx7xxjfz6i-e4hs4hl5gwlu5eu2l4aiyzwreq.datawarehouse.fabric.microsoft.com",
+                  "workspaceId": "00000000-0000-0000-0000-000000000000"
+                },
+                "externalReferences": {
+                  "connection": "4fb51c59-b66c-4dc9-98ea-760e70ddc971"
+                },
+                "annotations": []
+              }
+            },
+            "annotations": []
+          },
+          "firstRowOnly": false
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Get_Pipeline_Config",
+        "dependsOn": []
+      },
+      {
+        "type": "ForEach",
+        "typeProperties": {
+          "isSequential": true,
+          "items": {
+            "value": "@activity('Get_Pipeline_Config').output.value",
+            "type": "Expression"
+          },
+          "activities": [
+            {
+              "type": "Script",
+              "typeProperties": {
+                "scripts": [
+                  {
+                    "text": {
+                      "value": "DECLARE @SQL NVARCHAR(MAX) = \n    'INSERT INTO [' + '@{item().TargetSchema}' + '].[' + '@{item().TargetTable}' + '] ' +\n    'SELECT * FROM [' + '@{item().SourceSchema}' + '].[' + '@{item().SourceTable}' + '];';\n\nEXEC sp_executesql @SQL;",
+                      "type": "Expression"
+                    },
+                    "type": "Query"
+                  }
+                ],
+                "scriptBlockExecutionTimeout": "02:00:00"
+              },
+              "connectionSettings": {
+                "name": "wh_demo",
+                "properties": {
+                  "type": "DataWarehouse",
+                  "typeProperties": {
+                    "artifactId": "29c624c1-e5f7-84b8-44f4-5d33dcd09796",
+                    "endpoint": "cj236xyunrauxajdvx7xxjfz6i-e4hs4hl5gwlu5eu2l4aiyzwreq.datawarehouse.fabric.microsoft.com",
+                    "workspaceId": "00000000-0000-0000-0000-000000000000"
+                  },
+                  "externalReferences": {
+                    "connection": "4fb51c59-b66c-4dc9-98ea-760e70ddc971"
+                  },
+                  "annotations": []
+                }
+              },
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "Load_Bronze_Table",
+              "dependsOn": []
+            }
+          ]
+        },
+        "name": "Loop_Over_Tables",
+        "dependsOn": [
+          {
+            "activity": "Get_Pipeline_Config",
+            "dependencyConditions": [
+              "Completed"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

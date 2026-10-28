@@ -1,18 +1,18 @@
 CREATE TABLE [gold].[FactSupplyChain] (
 
-	[ShipmentID] varchar(100) NOT NULL, 
-	[ProductID] varchar(100) NULL, 
-	[SupplierName] varchar(255) NULL, 
-	[WarehouseName] varchar(255) NULL, 
-	[OrderedQuantity] int NULL, 
-	[LeadTimeDays] int NULL, 
-	[DelayDays] int NULL, 
-	[OrderStatus] varchar(100) NULL, 
+	[ProductID] varchar(50) NOT NULL, 
+	[SupplierName] varchar(100) NULL, 
+	[WarehouseName] varchar(100) NULL, 
+	[OrderStatus] varchar(50) NULL, 
 	[OrderDate] date NULL, 
 	[OrderDateKey] int NULL, 
 	[DeliveryDate] date NULL, 
 	[DeliveryDateKey] int NULL, 
+	[TotalShipmentCount] int NULL, 
+	[TotalOrderedQuantity] bigint NULL, 
+	[AvgLeadTimeDays] decimal(10,2) NULL, 
+	[MaxDelayDays] int NULL, 
 	[SourceFileName] varchar(255) NULL, 
 	[IngestionDateTime] datetime2(6) NULL, 
-	[LoadedToGoldDateTime] datetime2(6) NOT NULL
+	[LoadedToGoldDateTime] datetime2(6) NULL
 );

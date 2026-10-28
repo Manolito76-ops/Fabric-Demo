@@ -7,15 +7,9 @@
   "queryGroups": [],
   "documentLocale": "de-DE",
   "queriesMetadata": {
-    "bom csv": {
-      "queryId": "015f8392-3afb-4591-ab85-7a6f99378d25",
-      "queryName": "bom csv",
-      "loadEnabled": false
-    },
     "order csv": {
       "queryId": "ebdc355f-09df-45b8-9f6b-479c857f28b3",
-      "queryName": "order csv",
-      "loadEnabled": false
+      "queryName": "order csv"
     },
     "production csv": {
       "queryId": "d1cd699f-7b01-4334-a467-714c8af2b0f1",
@@ -23,11 +17,16 @@
     },
     "supply_chain csv": {
       "queryId": "8256596d-c1b8-4e8f-9ced-0f97ae917ce4",
-      "queryName": "supply_chain csv",
+      "queryName": "supply_chain csv"
+    },
+    "DefaultDestination": {
+      "queryId": "58eed318-ed49-4312-9c62-aa46fc27b47a",
+      "queryName": "DefaultDestination",
+      "isHidden": true,
       "loadEnabled": false
     },
     "production csv_DataDestination": {
-      "queryId": "c8c81c98-7086-4110-8ac2-55db4cba4515",
+      "queryId": "c42126ff-ac60-4080-abac-96cecfe4b943",
       "queryName": "production csv_DataDestination",
       "isHidden": true,
       "loadEnabled": false

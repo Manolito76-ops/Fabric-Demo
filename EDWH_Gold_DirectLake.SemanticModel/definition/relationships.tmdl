@@ -1,0 +1,42 @@
+relationship 9b69284c-487b-08fa-de82-4bf331f59df2
+	relyOnReferentialIntegrity
+	fromColumn: FactOrders.CustomerID
+	toColumn: DimCustomer.CustomerID
+
+relationship 4bf1c15f-d50d-ef80-aa65-eedc7cd6f466
+	relyOnReferentialIntegrity
+	fromColumn: FactOrders.OrderDateKey
+	toColumn: DimDate.DateKey
+
+relationship 66d3f22a-88ed-feef-b67b-28f146d2967f
+	fromColumn: FactProduction.ProductionDateKey
+	toColumn: DimDate.DateKey
+
+relationship 462823fc-aca0-f52a-8365-ba165c822374
+	fromColumn: FactSupplyChain.OrderDateKey
+	toColumn: DimDate.DateKey
+
+relationship 7717cdff-cf92-eb63-45c9-3e82978a6840
+	fromColumn: FactSupplyChain.SupplierName
+	toColumn: DimSupplier.SupplierName
+
+relationship fccad0e5-5629-2890-ccdd-37a93deb75a1
+	fromColumn: FactOrders.ProductID
+	toColumn: Dim_SalesPricing.ParentProductID
+
+relationship 849768ec-91d8-6915-867f-15d77ec09325
+	fromColumn: FactSupplyChain.ProductID
+	toColumn: Dim_PurchasePricing.ComponentProductID
+
+relationship 5a708961-3ec0-dcd7-3242-3d0dfbe926f7
+	fromColumn: FactProduction.ProductID
+	toColumn: Dim_SalesPricing.ParentProductID
+
+relationship c2ed6afd-75f7-e03d-8aae-0ab7958acfd6
+	fromColumn: Dim_BillOfMaterials.ComponentProductID
+	toColumn: Dim_PurchasePricing.ComponentProductID
+
+relationship 6ecde398-1634-b8ab-914b-468486b4e1c5
+	fromColumn: Dim_BillOfMaterials.ParentProductID
+	toColumn: Dim_SalesPricing.ParentProductID
+

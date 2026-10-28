@@ -1,0 +1,116 @@
+table Dim_BillOfMaterials
+	lineageTag: 7f9b2c29-a98c-4f82-aed1-5765424e0d70
+	sourceLineageTag: [stg].[Dim_BillOfMaterials]
+
+	measure MaterialCost_per_Unit =
+			
+			SUMX(
+			    Dim_BillOfMaterials,
+			    Dim_BillOfMaterials[QuantityPerUnit] * RELATED(Dim_PurchasePricing[StandardPurchasePrice])
+			)
+		lineageTag: 2d5275b3-a979-4a15-b466-b16db4a165b4
+
+		changedProperty = Name
+
+		changedProperty = IsHidden
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure COGS_BOM =
+			
+			SUMX(
+			    VALUES(FactOrders[ProductID]),
+			    SUM(FactOrders[TotalQuantity]) * [MaterialCost_per_Unit]
+			)
+		lineageTag: e46c98af-bfff-46b1-9dcb-5c0006bdb95c
+
+		changedProperty = Name
+
+		changedProperty = IsHidden
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ParentProductID
+		dataType: string
+		lineageTag: abf6b808-df84-4cb3-953f-b42f85e42d71
+		sourceLineageTag: ParentProductID
+		summarizeBy: none
+		sourceColumn: ParentProductID
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column ComponentProductID
+		dataType: string
+		lineageTag: 73285dc2-fc2d-4f6b-99a9-6f3962a6b289
+		sourceLineageTag: ComponentProductID
+		summarizeBy: none
+		sourceColumn: ComponentProductID
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column QuantityPerUnit
+		dataType: string
+		lineageTag: 4c1e9b1a-a24a-4eef-8a68-61b8621acccc
+		sourceLineageTag: QuantityPerUnit
+		summarizeBy: none
+		sourceColumn: QuantityPerUnit
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column UnitOfMeasure
+		dataType: string
+		lineageTag: 4d00529e-fc0f-4864-83b0-c0acd02e52d2
+		sourceLineageTag: UnitOfMeasure
+		summarizeBy: none
+		sourceColumn: UnitOfMeasure
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column ValidFrom
+		dataType: string
+		lineageTag: 30a8ee0b-3efa-4eba-929b-d09de0cd52f6
+		sourceLineageTag: ValidFrom
+		summarizeBy: none
+		sourceColumn: ValidFrom
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column ValidTo
+		dataType: string
+		lineageTag: 5441bff1-8873-4be8-aa67-9261025c4698
+		sourceLineageTag: ValidTo
+		summarizeBy: none
+		sourceColumn: ValidTo
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column ScenarioVersion
+		dataType: string
+		lineageTag: 02d16db9-afa3-486e-a3d3-256385f418e3
+		sourceLineageTag: ScenarioVersion
+		summarizeBy: none
+		sourceColumn: ScenarioVersion
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_BillOfMaterials = entity
+		mode: directLake
+		source
+			entityName: Dim_BillOfMaterials
+			schemaName: stg
+			expressionSource: 'DirectLake - wh_demo'
+

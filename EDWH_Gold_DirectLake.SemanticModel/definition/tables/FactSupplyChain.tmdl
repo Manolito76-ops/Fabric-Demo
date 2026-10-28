@@ -1,0 +1,188 @@
+table FactSupplyChain
+	lineageTag: 9763634f-823d-44bc-a66b-0fedaecdc244
+	sourceLineageTag: [gold].[FactSupplyChain]
+
+	column ProductID
+		dataType: string
+		lineageTag: 3a319f5a-a7a2-4b72-baf5-60168fa46ba6
+		sourceLineageTag: ProductID
+		summarizeBy: none
+		sourceColumn: ProductID
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column SupplierName
+		dataType: string
+		lineageTag: cdf580f9-0e73-4825-8142-64d4744a0e76
+		sourceLineageTag: SupplierName
+		summarizeBy: none
+		sourceColumn: SupplierName
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column WarehouseName
+		dataType: string
+		lineageTag: 8c9f3a86-2f6f-4369-a903-47bafb8dc71d
+		sourceLineageTag: WarehouseName
+		summarizeBy: none
+		sourceColumn: WarehouseName
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderStatus
+		dataType: string
+		lineageTag: 95a6ba64-d74a-4935-8209-3382695733e8
+		sourceLineageTag: OrderStatus
+		summarizeBy: none
+		sourceColumn: OrderStatus
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: ecc37069-494b-4a78-84c3-c308814fd836
+		sourceLineageTag: OrderDate
+		summarizeBy: none
+		sourceColumn: OrderDate
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderDateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 42ae9882-b860-49f3-9066-830d17a83881
+		sourceLineageTag: OrderDateKey
+		summarizeBy: none
+		sourceColumn: OrderDateKey
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column DeliveryDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 664a8e91-18e9-42f5-b587-3b21b81c46bb
+		sourceLineageTag: DeliveryDate
+		summarizeBy: none
+		sourceColumn: DeliveryDate
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column DeliveryDateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 8b97410d-d1a2-45b8-9e7e-3fc403161e36
+		sourceLineageTag: DeliveryDateKey
+		summarizeBy: count
+		sourceColumn: DeliveryDateKey
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column SourceFileName
+		dataType: string
+		lineageTag: 990ae902-ad21-4315-8b75-c6978509ad09
+		sourceLineageTag: SourceFileName
+		summarizeBy: none
+		sourceColumn: SourceFileName
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column IngestionDateTime
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 783690f3-c3fc-4cb4-9dd4-aa2152b3ac91
+		sourceLineageTag: IngestionDateTime
+		summarizeBy: none
+		sourceColumn: IngestionDateTime
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column LoadedToGoldDateTime
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 9488e626-7160-4947-a14e-49350be38ab4
+		sourceLineageTag: LoadedToGoldDateTime
+		summarizeBy: none
+		sourceColumn: LoadedToGoldDateTime
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column TotalShipmentCount
+		dataType: int64
+		formatString: 0
+		lineageTag: 310802f3-a658-46e5-85a1-abf7ed25d1be
+		sourceLineageTag: TotalShipmentCount
+		summarizeBy: sum
+		sourceColumn: TotalShipmentCount
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column TotalOrderedQuantity
+		dataType: int64
+		formatString: 0
+		lineageTag: 72e14a9f-60f3-4129-8da8-4eb84a3e2b8a
+		sourceLineageTag: TotalOrderedQuantity
+		summarizeBy: sum
+		sourceColumn: TotalOrderedQuantity
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column AvgLeadTimeDays
+		dataType: decimal
+		formatString: #,0.###############\ "€";-#,0.###############\ "€";#,0.###############\ "€"
+		lineageTag: b9f53368-514b-4d9b-924d-e10ba2738c0b
+		sourceLineageTag: AvgLeadTimeDays
+		summarizeBy: sum
+		sourceColumn: AvgLeadTimeDays
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"de"}
+
+	column MaxDelayDays
+		dataType: int64
+		formatString: 0
+		lineageTag: 96388416-b508-4f58-9909-61b1615c3745
+		sourceLineageTag: MaxDelayDays
+		summarizeBy: sum
+		sourceColumn: MaxDelayDays
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactSupplyChain = entity
+		mode: directLake
+		source
+			entityName: FactSupplyChain
+			schemaName: gold
+			expressionSource: 'DirectLake - wh_demo'
+

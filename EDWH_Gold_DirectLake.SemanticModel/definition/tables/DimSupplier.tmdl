@@ -1,0 +1,34 @@
+table DimSupplier
+	lineageTag: da32343c-b443-4638-9b04-bf0ac243955b
+	sourceLineageTag: [gold].[DimSupplier]
+
+	column SupplierName
+		dataType: string
+		lineageTag: b7193711-deab-43a8-b810-47866e05b07c
+		sourceLineageTag: SupplierName
+		summarizeBy: none
+		sourceColumn: SupplierName
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column CreatedInGoldDateTime
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: ec8421da-c575-4ddd-bd9f-5b312e52310e
+		sourceLineageTag: CreatedInGoldDateTime
+		summarizeBy: none
+		sourceColumn: CreatedInGoldDateTime
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimSupplier = entity
+		mode: directLake
+		source
+			entityName: DimSupplier
+			schemaName: gold
+			expressionSource: 'DirectLake - wh_demo'
+

@@ -1,0 +1,206 @@
+table DimDate
+	lineageTag: f43f5cc5-fc47-467b-a792-c390cbd45f09
+	sourceLineageTag: [gold].[DimDate]
+	dataCategory: Time
+
+	measure 'Max Actual Date' =
+			
+			CALCULATE(
+			    MAX(FactOrders[OrderDate]),
+			    REMOVEFILTERS('DimDate')
+			)
+		formatString: General Date
+		lineageTag: f176e828-567a-424e-bccf-0cb111bb08bc
+
+		changedProperty = Name
+
+		changedProperty = IsHidden
+
+	column DateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: d968954c-81e1-4f6a-b99f-a9074e29f33c
+		sourceLineageTag: DateKey
+		summarizeBy: none
+		sourceColumn: DateKey
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column FullDate
+		dataType: dateTime
+		isKey
+		formatString: General Date
+		lineageTag: 4c476de4-8421-4010-92e1-b8832179fbfc
+		sourceLineageTag: FullDate
+		summarizeBy: none
+		sourceColumn: FullDate
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 46826c46-8d31-4186-bf8c-5c4195bd3201
+		sourceLineageTag: Year
+		summarizeBy: none
+		sourceColumn: Year
+
+		changedProperty = SummarizeBy
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column Quarter
+		dataType: int64
+		formatString: 0
+		lineageTag: bcde1cd7-0e20-4f84-9ef6-299b16d97e45
+		sourceLineageTag: Quarter
+		summarizeBy: none
+		sourceColumn: Quarter
+
+		changedProperty = SummarizeBy
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column Month
+		dataType: int64
+		formatString: 0
+		lineageTag: b5f780df-a53c-453d-95cf-57300ae39f41
+		sourceLineageTag: Month
+		summarizeBy: none
+		sourceColumn: Month
+
+		changedProperty = SummarizeBy
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column MonthName
+		dataType: string
+		lineageTag: d3b05985-8c81-4468-9212-055c1c6b8f63
+		sourceLineageTag: MonthName
+		summarizeBy: none
+		sourceColumn: MonthName
+		sortByColumn: Month
+
+		changedProperty = SortByColumn
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Day
+		dataType: int64
+		formatString: 0
+		lineageTag: 2f05f5be-70e2-47b1-9104-66771ff4fae2
+		sourceLineageTag: Day
+		summarizeBy: none
+		sourceColumn: Day
+
+		changedProperty = SummarizeBy
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column DayOfWeek
+		dataType: int64
+		formatString: 0
+		lineageTag: 436c53dc-255e-477a-924e-700c5507c7fb
+		sourceLineageTag: DayOfWeek
+		summarizeBy: none
+		sourceColumn: DayOfWeek
+
+		changedProperty = SummarizeBy
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column DayName
+		dataType: string
+		lineageTag: ec12c04f-aa85-4b71-bf4a-46143794e816
+		sourceLineageTag: DayName
+		summarizeBy: none
+		sourceColumn: DayName
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsWeekend
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: a6e2bf77-b9a4-41b6-876f-4b6392f621b2
+		sourceLineageTag: IsWeekend
+		summarizeBy: none
+		sourceColumn: IsWeekend
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearMonthSort
+		dataType: int64
+		formatString: 0
+		lineageTag: cbeba2a5-e581-465b-9f0b-348850fb7188
+		sourceLineageTag: YearMonthSort
+		summarizeBy: none
+		sourceColumn: YearMonthSort
+
+		changedProperty = SummarizeBy
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column YearMonth
+		dataType: string
+		lineageTag: 4a09621a-d406-4555-b4fd-3af023a8bcee
+		sourceLineageTag: YearMonth
+		summarizeBy: none
+		sourceColumn: YearMonth
+		sortByColumn: YearMonthSort
+
+		changedProperty = SortByColumn
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Today = FORMAT(TODAY(), "dd-MMM-yyyy")
+		dataType: dateTime
+		formatString: d-mmm-yyyy
+		lineageTag: 07e34734-964e-4043-a90e-d2f9d4619500
+		summarizeBy: none
+		expressionContext: userContext
+
+		changedProperty = Name
+
+		changedProperty = DataType
+
+		changedProperty = FormatString
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	partition DimDate = entity
+		mode: directLake
+		source
+			entityName: DimDate
+			schemaName: gold
+			expressionSource: 'DirectLake - wh_demo'
+

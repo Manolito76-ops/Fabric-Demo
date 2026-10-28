@@ -9,4 +9,4 @@
     | extend MyTimestamp = datetime_add('hour', 2, now())
 }
 .alter table bikes policy streamingingestion "{\"IsEnabled\":true,\"HintAllocatedRate\":null,\"NumberOfRowStores\":null,\"SealIntervalLimit\":null,\"SealThresholdBytes\":null,\"UsageTags\":[],\"IsMaintenanceActive\":false}"
-.alter table bikes_final policy update "[{\"IsEnabled\":true,\"Source\":\"bikes\",\"Query\":\"bikes_transform()\",\"IsTransactional\":true,\"PropagateIngestionProperties\":false,\"ManagedIdentity\":null}]"
+.alter table bikes_final policy update "[{\"IsEnabled\":true,\"Source\":\"bikes\",\"Query\":\"bikes_transform()\",\"IsTransactional\":true,\"PropagateIngestionProperties\":false,\"ManagedIdentity\":null,\"IsAsync\":false}]"

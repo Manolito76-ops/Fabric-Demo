@@ -1,0 +1,51 @@
+{
+  "sources": [
+    {
+      "id": "006bf0a0-a727-41bc-811c-ed826cac8742",
+      "name": "fabric-job-events",
+      "type": "FabricJobEvents",
+      "properties": {
+        "eventScope": "Item",
+        "workspaceId": "1d2e0f27-357d-4e97-929a-5f008c66d124",
+        "itemId": "f7977770-3975-4f2f-97b1-5b199f0c3cce",
+        "includedEventTypes": [
+          "Microsoft.Fabric.JobEvents.ItemJobFailed"
+        ],
+        "filters": []
+      }
+    }
+  ],
+  "destinations": [
+    {
+      "id": "b636579a-6cee-5d92-9e15-fe93efb74bee",
+      "name": "651YixibcRF0BRnfBoDPF0-8fc7c68a-b207-4129-a88b-e9a3308d2dac",
+      "type": "Activator",
+      "properties": {
+        "workspaceId": "00000000-0000-0000-0000-000000000000",
+        "itemId": "308d2dac-e9a3-a88b-4129-b2078fc7c68a",
+        "inputSerialization": {
+          "type": "Json",
+          "properties": {
+            "encoding": "UTF8"
+          }
+        }
+      },
+      "inputNodes": [
+        {
+          "name": "job_events_eventstream_pl_csv2stg-stream"
+        }
+      ]
+    }
+  ],
+  "streams": [
+    {
+      "id": "de954ae0-db5f-42ff-afcc-21f729b36898",
+      "name": "job_events_eventstream_pl_csv2stg-stream",
+      "type": "DefaultStream",
+      "properties": {},
+      "inputNodes": []
+    }
+  ],
+  "operators": [],
+  "compatibilityLevel": "1.1"
+}

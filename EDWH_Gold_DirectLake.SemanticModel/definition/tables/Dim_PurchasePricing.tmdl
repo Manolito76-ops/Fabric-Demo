@@ -1,0 +1,88 @@
+table Dim_PurchasePricing
+	lineageTag: 42ef0310-dcff-4853-9e05-2e708d30aa72
+	sourceLineageTag: [stg].[Dim_PurchasePricing]
+
+	column ComponentProductID
+		dataType: string
+		lineageTag: 0a7ae316-9045-4c27-9fe1-61aab68f6580
+		sourceLineageTag: ComponentProductID
+		summarizeBy: none
+		sourceColumn: ComponentProductID
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column ComponentName
+		dataType: string
+		lineageTag: bad7f960-9f17-408c-aac6-58d238976617
+		sourceLineageTag: ComponentName
+		summarizeBy: none
+		sourceColumn: ComponentName
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column StandardPurchasePrice
+		dataType: string
+		lineageTag: cd3b4cc5-474b-4b19-ba06-8191ed7d134d
+		sourceLineageTag: StandardPurchasePrice
+		summarizeBy: none
+		sourceColumn: StandardPurchasePrice
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Currency
+		dataType: string
+		lineageTag: 97f8d361-69bd-4ad7-bf9b-8adebad9be35
+		sourceLineageTag: Currency
+		summarizeBy: none
+		sourceColumn: Currency
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column ValidFrom
+		dataType: string
+		lineageTag: d066d6db-602a-4c65-a11a-35771aec1d19
+		sourceLineageTag: ValidFrom
+		summarizeBy: none
+		sourceColumn: ValidFrom
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column ValidTo
+		dataType: string
+		lineageTag: 6d52d7b3-1d66-4a2c-b2c3-8f2981ad93c3
+		sourceLineageTag: ValidTo
+		summarizeBy: none
+		sourceColumn: ValidTo
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column ScenarioVersion
+		dataType: string
+		lineageTag: eae6d12d-d537-4394-bc00-3e95888bf544
+		sourceLineageTag: ScenarioVersion
+		summarizeBy: none
+		sourceColumn: ScenarioVersion
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_PurchasePricing = entity
+		mode: directLake
+		source
+			entityName: Dim_PurchasePricing
+			schemaName: stg
+			expressionSource: 'DirectLake - wh_demo'
+

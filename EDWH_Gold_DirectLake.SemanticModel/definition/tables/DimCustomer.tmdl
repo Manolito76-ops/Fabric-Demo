@@ -1,0 +1,45 @@
+table DimCustomer
+	lineageTag: 3f4c5457-d238-4b30-995c-cf6214d5d103
+	sourceLineageTag: [gold].[DimCustomer]
+
+	column CustomerID
+		dataType: string
+		lineageTag: 08d289ca-f200-4d0c-8cce-cc79658d35e9
+		sourceLineageTag: CustomerID
+		summarizeBy: none
+		sourceColumn: CustomerID
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerName
+		dataType: string
+		lineageTag: 7274485b-35fd-40f0-bc4b-c81d1e0f7dda
+		sourceLineageTag: CustomerName
+		summarizeBy: none
+		sourceColumn: CustomerName
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column CreatedInGoldDateTime
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 31bb809d-17cf-4d2a-90f2-fbcf57c470a6
+		sourceLineageTag: CreatedInGoldDateTime
+		summarizeBy: none
+		sourceColumn: CreatedInGoldDateTime
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimCustomer = entity
+		mode: directLake
+		source
+			entityName: DimCustomer
+			schemaName: gold
+			expressionSource: 'DirectLake - wh_demo'
+

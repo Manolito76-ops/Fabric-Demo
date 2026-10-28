@@ -9,5 +9,7 @@ CREATE TABLE [gold].[DimDate] (
 	[Day] int NOT NULL, 
 	[DayOfWeek] int NOT NULL, 
 	[DayName] varchar(20) NOT NULL, 
-	[IsWeekend] bit NOT NULL
+	[IsWeekend] bit NOT NULL, 
+	[YearMonthSort] int NULL, 
+	[YearMonth] varchar(7) NULL
 );
